@@ -7,60 +7,51 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Sobre el proyecto - MOTUM
+Para la tesis estoy creando un proyecto llamado Motum que conecte entrenadores con alumnos interesados en actividades físicas al aire libre, utilizando geolocalización para optimizar la experiencia. La aplicación debe incluir funcionalidades específicas tanto para alumnos como para entrenadores, permitiendo una interacción eficiente y un control adecuado de entrenamientos y reservas en parques públicos. A continuación, detallo los requerimientos para cada tipo de usuario:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Requerimientos para alumnos:
+Geolocalización y búsqueda de actividades: (estoy usando la API de Google)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+El usuario debe seleccionar una ubicación manualmente o utilizar su ubicación actual.
+Mostrar en un mapa las plazas o parques públicos cercanos donde se realicen actividades físicas.
+Al seleccionar un parque, debe aparecer una lista de actividades disponibles en ese lugar (ejemplo: yoga, fútbol, running, etc.).
+Tras elegir una actividad, se debe mostrar una lista de entrenamientos asociados, con información como:
+Horarios disponibles.
+Precios.
+Entrenadores responsables.
+Reserva y pago:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+El usuario debe poder seleccionar un entrenamiento y optar por:
+Pagar una clase de prueba.
+Comprar una membresía con distintas modalidades (por ejemplo: clases ilimitadas o dos veces por semana).
+Para asistir a una clase, el usuario debe reservarla con al menos 24 horas de anticipación.
+Si ya reservó una clase, no debe poder cancelarla con menos de 24 horas de anticipación.
+Gestión de clases reservadas:
 
-## Learning Laravel
+Mostrar una sección de "Mis clases" donde el usuario pueda:
+Ver las clases reservadas.
+Consultar las restricciones de su membresía (por ejemplo, clases limitadas por semana).
+Bloquear reservas adicionales si exceden el límite permitido por la membresía.
+Requerimientos para entrenadores:
+Registro y selección de parques:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Durante el registro, el entrenador debe elegir un parque de preferencia donde llevará a cabo sus entrenamientos.
+Desde el dashboard, el entrenador debe poder:
+Ver un calendario semanal con sus entrenamientos programados.
+Agregar entrenamientos nuevos seleccionando un parque de preferencia.
+Tener la opción de agregar más parques a su lista de preferencia y alternar entre ellos.
+Creación de entrenamientos:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Cuando el entrenador cree un entrenamiento, este debe asociarse automáticamente al parque seleccionado previamente.
+No se debe requerir que el entrenador cargue nuevamente los datos del parque cada vez que agregue una clase.
+Gestión de entrenamientos:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Permitir que el entrenador consulte información detallada de cada clase, incluyendo:
+El número de alumnos inscritos.
+Los nombres de los alumnos.
+Facilitar el seguimiento de asistencia y gestión de cupos en tiempo real.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
