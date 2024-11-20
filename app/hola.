@@ -1,0 +1,118 @@
+
+// public/js/parkSearch.js
+
+let autocomplete;
+let map;
+let marker;
+let selectedParkData = null; // Variable para almacenar los datos del parque seleccionado
+
+function initAutocomplete() {
+    const input = document.getElementById("park-search");
+
+    // Inicializa el autocompletado y filtra para lugares de tipo "park"
+    autocomplete = new google.maps.places.Autocomplete(input, {
+        types: ['establishment'],
+        componentRestrictions: { country: "AR" },
+    });
+
+    // Inicializa el mapa centrado en CABA
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.6037, lng: -58.3816 },
+        zoom: 12,
+    });
+
+    // Prepara el marcador, pero no lo coloca en el mapa aún
+    marker = new google.maps.Marker({
+        map: map,
+        visible: false, // Oculto inicialmente
+    });
+
+    // Escucha cuando el usuario selecciona un lugar
+    autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        
+        // Verificar que la dirección contenga "Ciudad Autónoma de Buenos Aires" o "CABA"
+        const isInBuenosAires = place.formatted_address.includes("Ciudad Autónoma de Buenos Aires") || 
+                                place.formatted_address.includes("Cdad. Autónoma de Buenos Aires") || 
+                                place.formatted_address.includes("CABA");
+        
+        if (!isInBuenosAires) {
+            alert("Por favor, selecciona una plaza en la Ciudad Autónoma de Buenos Aires.");
+            return;
+        }
+    
+        // Procede con la lógica si está en CABA
+        if (place.types.includes('park')) {
+            displayParkData(place);
+            showParkOnMap(place);
+            selectedParkData = {
+                name: place.name,
+                location: place.formatted_address || "Sin dirección",
+                latitude: place.geometry.location.lat(),
+                longitude: place.geometry.location.lng(),
+                opening_hours: place.opening_hours ? place.opening_hours.weekday_text : null,
+            };
+            document.getElementById("save-button").style.display = "block"; // Muestra el botón de guardar
+        } else {
+            alert("El lugar seleccionado no es una plaza.");
+        }
+    });
+    
+}
+
+// Muestra los datos del parque en la interfaz
+function displayParkData(place) {
+    const resultsDiv = document.getElementById("results");
+    let openingHours = "No disponible";
+
+    if (place.opening_hours && place.opening_hours.weekday_text) {
+        openingHours = place.opening_hours.weekday_text.join("<br>");
+    }
+
+    resultsDiv.innerHTML = `
+        <p><strong>Nombre:</strong> ${place.name}</p>
+        <p><strong>Ubicación:</strong> ${place.formatted_address || "Sin dirección"}</p>
+        <p><strong>Latitud:</strong> ${place.geometry.location.lat()}</p>
+        <p><strong>Longitud:</strong> ${place.geometry.location.lng()}</p>
+        <p><strong>Horarios:</strong><br> ${openingHours}</p>
+    `;
+}
+
+// Muestra el parque en el mapa, centrándolo y colocando un marcador
+function showParkOnMap(place) {
+    const location = {
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng()
+    };
+
+    map.setCenter(location);
+    map.setZoom(15);
+
+    marker.setPosition(location);
+    marker.setVisible(true);
+}
+
+// Función para guardar el parque en la base de datos cuando se hace clic en el botón
+function savePark() {
+    if (!selectedParkData) {
+        alert("No hay ningún parque seleccionado para guardar.");
+        return;
+    }
+
+    fetch('/search-or-create-park', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(selectedParkData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message); // Muestra el mensaje de éxito o si ya existe
+        document.getElementById("save-button").style.display = "none"; // Oculta el botón después de guardar
+    })
+    .catch(error => console.error('Error al guardar el parque:', error));
+}
+
+window.onload = initAutocomplete;
