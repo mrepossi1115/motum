@@ -1,5 +1,6 @@
 ## Sobre el proyecto - MOTUM
 Para la tesis estoy creando un proyecto llamado Motum que conecte entrenadores con alumnos interesados en actividades físicas al aire libre, utilizando geolocalización para optimizar la experiencia. La aplicación debe incluir funcionalidades específicas tanto para alumnos como para entrenadores, permitiendo una interacción eficiente y un control adecuado de entrenamientos y reservas en parques públicos. A continuación, detallo los requerimientos para cada tipo de usuario:
+((HASTA EL MOMENTO NO HICE NADA DEL LADO DEL USUARIO ESTABA TRATANDO DE TEMRIANR LA PARTE DEL ENTRENADOR.))
 
 Requerimientos para alumnos:
 Geolocalización y búsqueda de actividades: (estoy usando la API de Google)
@@ -33,7 +34,7 @@ Ver un calendario semanal con sus entrenamientos programados.
 Agregar entrenamientos nuevos seleccionando un parque de preferencia.
 Tener la opción de agregar más parques a su lista de preferencia y alternar entre ellos.
 Creación de entrenamientos:
-
+((LO QUE NO ME ESTA SALIENDO ES CARGAR ENTRNEAMIENTOS A OTRO APRQUE QUE NO SEA EL QUE PUSE CUANDO SE RGEISTRA EL ENTRENADOR))
 Cuando el entrenador cree un entrenamiento, este debe asociarse automáticamente al parque seleccionado previamente.
 No se debe requerir que el entrenador cargue nuevamente los datos del parque cada vez que agregue una clase. ESTO ES LO QUE NO ME ESTA SALIENDO
 Gestión de entrenamientos:
