@@ -1,12 +1,3 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
 ## Sobre el proyecto - MOTUM
 Para la tesis estoy creando un proyecto llamado Motum que conecte entrenadores con alumnos interesados en actividades físicas al aire libre, utilizando geolocalización para optimizar la experiencia. La aplicación debe incluir funcionalidades específicas tanto para alumnos como para entrenadores, permitiendo una interacción eficiente y un control adecuado de entrenamientos y reservas en parques públicos. A continuación, detallo los requerimientos para cada tipo de usuario:
 
@@ -44,7 +35,7 @@ Tener la opción de agregar más parques a su lista de preferencia y alternar en
 Creación de entrenamientos:
 
 Cuando el entrenador cree un entrenamiento, este debe asociarse automáticamente al parque seleccionado previamente.
-No se debe requerir que el entrenador cargue nuevamente los datos del parque cada vez que agregue una clase.
+No se debe requerir que el entrenador cargue nuevamente los datos del parque cada vez que agregue una clase. ESTO ES LO QUE NO ME ESTA SALIENDO
 Gestión de entrenamientos:
 
 Permitir que el entrenador consulte información detallada de cada clase, incluyendo:
